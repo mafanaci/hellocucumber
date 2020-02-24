@@ -14,4 +14,4 @@ Feature: Is it Friday Yet ?
       | Friday         | Yep    |
       | Saturday       | Nope   |
       | Sunday         | Nope   |
-      | anything else! | Nope   |
+      | anything else! | ERROR  |
