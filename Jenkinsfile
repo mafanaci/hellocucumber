@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Hygieia'){
      steps{
-      hygieiaTestPublishStep buildStatus: 'Success', testApplicationName: 'HelloCucumberJenkins', testEnvironmentName: 'Dev', testFileNamePattern: 'cucumber.js', testResultsDirectory: '/target', testType: 'Functional'
+      hygieiaTestPublishStep buildStatus: 'Success', testApplicationName: 'HelloCucumberJenkins', testEnvironmentName: 'Dev', testFileNamePattern: 'cucumber.json', testResultsDirectory: '/target', testType: 'Functional'
      }
     }
    }
