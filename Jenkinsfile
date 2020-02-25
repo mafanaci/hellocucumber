@@ -26,7 +26,7 @@ pipeline {
 
    post {
         always {
-             artifacts: '/target/cucumber.json', fingerprint: true
+             artifacts: 'cucumber.json', fingerprint: true
         }
     }
 }
