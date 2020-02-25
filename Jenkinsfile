@@ -51,9 +51,15 @@ pipeline {
                 }
             }
          }
-        stage('Hygieia'){
+        stage('Hygieia-Publish-Cucumber'){
             steps{
                 hygieiaTestPublishStep buildStatus: 'Success', testApplicationName: 'HelloCucumberJenkins', testEnvironmentName: 'Dev', testFileNamePattern: 'cucumber.json', testResultsDirectory: '/target', testType: 'Functional'
+                bat "exit 0"
+            }
+        }
+        stage('Hygieia-Publish-Sonar'){
+            steps{
+                hygieiaSonarPublishStep ceQueryIntervalInSeconds: '10', ceQueryMaxAttempts: '30'
                 bat "exit 0"
             }
         }
