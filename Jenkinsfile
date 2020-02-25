@@ -23,10 +23,4 @@ pipeline {
      hygieiaTestPublishStep buildStatus: 'Success', testApplicationName: 'HelloCucumberJenkins', testEnvironmentName: 'Dev', testFileNamePattern: 'cucumber.js', testResultsDirectory: '/target', testType: 'Functional'
     }
    }
-
-   post {
-        always {
-             artifacts: 'cucumber.json', fingerprint: true
-        }
-    }
 }
