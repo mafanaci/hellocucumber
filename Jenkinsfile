@@ -57,11 +57,11 @@ pipeline {
                 bat "exit 0"
             }
         }
-        stage('Hygieia-Publish-Sonar'){
-            steps{
-                hygieiaSonarPublishStep ceQueryIntervalInSeconds: '10', ceQueryMaxAttempts: '30'
-                bat "exit 0"
-            }
-        }
+        //stage('Hygieia-Publish-Sonar'){
+        //    steps{
+        //        hygieiaSonarPublishStep ceQueryIntervalInSeconds: '10', ceQueryMaxAttempts: '30'
+        //        bat "exit 0"
+        //    }
+        //}
     }
 }
