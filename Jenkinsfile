@@ -16,11 +16,16 @@ pipeline {
             bat "mvn -Dmaven.test.failure.ignore=true clean package"
          }
     }
-   }
-
-   stage('Hygieia'){
-    steps{
-     hygieiaTestPublishStep buildStatus: 'Success', testApplicationName: 'HelloCucumberJenkins', testEnvironmentName: 'Dev', testFileNamePattern: 'cucumber.js', testResultsDirectory: '/target', testType: 'Functional'
+    stage('Hygieia'){
+     steps{
+      hygieiaTestPublishStep buildStatus: 'Success', testApplicationName: 'HelloCucumberJenkins', testEnvironmentName: 'Dev', testFileNamePattern: 'cucumber.js', testResultsDirectory: '/target', testType: 'Functional'
+     }
     }
    }
+   
+   post {
+        always {
+             artifacts: 'cucumber.json', fingerprint: true
+        }
+    }
 }
