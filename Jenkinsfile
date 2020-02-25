@@ -17,4 +17,9 @@ pipeline {
          }
     }
    }
+   post {
+           always {
+               archiveArtifacts artifacts: 'target/cucumber.json', fingerprint: true
+           }
+       }
 }
