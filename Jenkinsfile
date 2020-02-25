@@ -31,6 +31,26 @@ pipeline {
                 }
             }
         }
+         stage('SonarQube analysis') {
+            steps {
+                script {
+                    if (env.GIT_BRANCH == 'develop') {
+                        sonarTargetBranch = '-Dsonar.branch.target=master'
+                    } else if (env.GIT_BRANCH == 'master') {
+                        // the master branch must not have a target branch as it is the default one.
+                        sonarTargetBranch = ''
+                    } else {
+                        sonarTargetBranch = '-Dsonar.branch.target=develop'
+                    }
+                    scannerHome = tool 'SonarQubeScanner'
+                }
+                 withSonarQubeEnv(credentialsId: 'SonarQube', installationName: 'SonarQube') {
+                    bat 'echo "pulling from this git branch!...."+ ${GIT_BRANCH}'
+                    bat "\"${scannerHome}/bin/sonar-scanner\" -Dproject.settings=build/sonar-project.properties -Dsonar.branch.name=${GIT_BRANCH} ${sonarTargetBranch} -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_BRANCH}"
+                      //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.2.0.1873:sonar'
+                }
+            }
+         }
         stage('Hygieia'){
             steps{
                 hygieiaTestPublishStep buildStatus: 'Success', testApplicationName: 'HelloCucumberJenkins', testEnvironmentName: 'Dev', testFileNamePattern: 'cucumber.json', testResultsDirectory: '/target', testType: 'Functional'
