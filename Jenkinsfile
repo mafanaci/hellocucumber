@@ -1,7 +1,7 @@
 pipeline {
    agent any
    tools{
-    maven 'Maven33'
+    maven 'Maven3'
    }
    stages {
     stage('Initializing') {
@@ -11,10 +11,10 @@ pipeline {
          echo "M2_HOME = ${M2_HOME}"
         }
     }
-
     stage('Build') {
          steps {
             bat "mvn -Dmaven.test.failure.ignore=true clean package"
          }
     }
+   }
 }
