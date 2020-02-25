@@ -17,9 +17,16 @@ pipeline {
          }
     }
    }
+
+   stage('hygieiaTestPublishStep'){
+    steps{
+     buildStatus: 'Success', testApplicationName: 'HelloCucumberJenkins', testEnvironmentName: 'Dev', testFileNamePattern: 'cucumber.js', testResultsDirectory: '/target', testType: 'Functional'
+    }
+   }
+
    post {
-           always {
-               archiveArtifacts artifacts: 'target/cucumber.json', fingerprint: true
-           }
-       }
+        always {
+             artifacts: 'target/cucumber.json', fingerprint: true
+        }
+    }
 }
