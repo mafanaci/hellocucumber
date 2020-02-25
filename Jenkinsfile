@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 bat "mvn -Dmaven.test.failure.ignore=false clean package"
-                catchError(messa: 'Execution of BDD tests failed', buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(message: 'Execution of BDD tests failed', buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     bat "exit 0"
                 }
             }
