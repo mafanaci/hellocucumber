@@ -22,10 +22,10 @@ pipeline {
      }
     }
    }
-   
+
    post {
         always {
-             artifacts: 'cucumber.json', fingerprint: true
+             artifacts: '/target/cucumber.json', fingerprint: true
         }
     }
 }
