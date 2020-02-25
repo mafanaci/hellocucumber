@@ -46,7 +46,7 @@ pipeline {
                 }
                  withSonarQubeEnv(credentialsId: 'SonarQube', installationName: 'SonarQube') {
                     bat 'echo "pulling from this git branch!...."+ ${GIT_BRANCH}'
-                    bat "\"${scannerHome}/bin/sonar-scanner\" -Dproject.settings=build/sonar-project.properties -Dsonar.branch.name=${GIT_BRANCH} ${sonarTargetBranch} -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_BRANCH}"
+                    bat "\"${scannerHome}/bin/sonar-scanner\" -Dsonar.projectKey=quality:Hygieia-Cucumber-Test -Dsonar.projectName=quality:Hygieia-Cucumber-Test -Dsonar.java.binaries=target/classes -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_BRANCH}"
                       //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.2.0.1873:sonar'
                 }
             }
